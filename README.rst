@@ -52,8 +52,33 @@ testcinder_jit`` runs the test suite with the JIT fully enabled, so all
 functions are JITted. ``make testruntime`` runs a suite of C++ gtest unit
 tests for the JIT. And ``make test_strict_module`` runs a test suite for
 strict modules (see below).
+To build on docker
+------------------
+It builds fine with docker fedora 32. Thank you.
+Platform 
+Fedora 32, Docker on Windows 10, Version 2004
 
+Steps to Reproduce
+Install docker from docker.com
 
+```python
+docker run -t -i fedora:32 bash
+git clone https://github.com/facebookincubator/cinder.git
+yum install zlib-devel openssl-devel
+./configure --enable-optimizations
+make
+make altinstall
+```
+However pip doesnt work.
+
+When trying to build pip I get this error. How would I begin fixing this? 
+```C
+>> Objects/accu.o
+Parser/listnode.c: In function ‘list1node’:
+Parser/listnode.c:66:1: error: ‘/cinder/Parser/listnode.gcda’ profile count data file not found [-Werror=missing-profile]
+   66 | }
+      | ^
+```
 What's here?
 ------------
 
